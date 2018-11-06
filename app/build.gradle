@@ -6,6 +6,8 @@ android {
         applicationId "com.meaforsoftware.warshetak"
         minSdkVersion 16
         targetSdkVersion 27
+        multiDexEnabled true
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -43,6 +45,10 @@ dependencies {
     implementation 'com.balysv:material-ripple:1.0.2'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
     implementation 'com.google.firebase:firebase-database:16.0.4'
+
+
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 
 }
