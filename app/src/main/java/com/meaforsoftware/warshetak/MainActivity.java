@@ -1,5 +1,6 @@
 package com.meaforsoftware.warshetak;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -9,7 +10,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // test push errcd or gfbhghgfhgfhg
+
+        startActivity(new Intent(MainActivity.this,Sign_Up_Activity.class));
+
 
     }
 }

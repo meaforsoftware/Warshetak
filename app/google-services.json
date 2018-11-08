@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "521362463608",
+    "firebase_url": "https://warshetak-91379.firebaseio.com",
+    "project_id": "warshetak-91379",
+    "storage_bucket": "warshetak-91379.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521362463608:android:a357a2ce654add3c",
+        "android_client_info": {
+          "package_name": "com.meaforsoftware.warshetak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521362463608-8qe14gqgml5u2vmaidhhppl6ue299kpr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.meaforsoftware.warshetak",
+            "certificate_hash": "bceac14e7ad8d3c90d44a700e282dba6892918fe"
+          }
+        },
+        {
+          "client_id": "521362463608-k2fu1k5lso4mu6vfhk6ktjt2kgu9821t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNpabJ1SbFp8zyU-99z5X6y0PXEDi2oao"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521362463608-k2fu1k5lso4mu6vfhk6ktjt2kgu9821t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
