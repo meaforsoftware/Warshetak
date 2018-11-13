@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,6 +46,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
     String checkedUserEMail ;
 
 
+    SignInButton signInButton ;
     ProgressBar progressBar;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -53,6 +56,14 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        signInButton = (SignInButton) findViewById(R.id.button1);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addUser(null);
+            }
+        });
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
@@ -242,11 +253,11 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
         Users users = new Users(EMail, User, Mobile);
 
-//                            DocumentReference user = usersRef.document(EMail);
+                            DocumentReference user = usersRef.document(EMail);
 
-        usersRef.add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        user.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(DocumentReference documentReference) {
+            public void onSuccess(Void avoid) {
                 Toast.makeText(Sign_Up_Activity.this, "Done", Toast.LENGTH_SHORT).show();
 //                                    startActivity(new Intent(getApplicationContext(), Profile_Owner.class));
             }
@@ -261,8 +272,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
 
 
-//
-////todo ==================== save document id =====================
+
 //
 //        // =========================================check user ==================================
 //        usersRef.whereEqualTo("eMail",EMail)
