@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -43,7 +44,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
     public static String User,Mobile,EMail;
 
-    String checkedUserEMail ;
+    String checkedUserEMail  ;
 
 
     SignInButton signInButton ;
@@ -61,7 +62,11 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addUser(null);
+
+                getUserData();
+
+//                GoogleSignUp(null);
+
             }
         });
 
@@ -93,84 +98,12 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
                     EMail = user.getEmail();
 
-//                    getUserData();
 
-//addUser(null);
                 }
             }
 
 
-            //==========================================================================================
-//            public void getUserData(){
-////                UserName = "";
-////                mobile = "";
-////                UserType = "";
-//
-//
-//                progressBar.setVisibility(View.VISIBLE);
-//                usersRef.whereEqualTo("userID",UserID)
-//                        .get()
-//                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                            @Override
-//                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//
-//                                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-//                                    Users user = documentSnapshot.toObject(Users.class);
-//
-//                                    UserName = user.getUserName();
-//                                    mobile = user.getMobile();
-//                                    UserType = user.getUserType();
-//
-//
-//
-//                                    if (UserName.equals(null)|| UserName ==""){
-//                                        logInName.setText(User);
-//                                    }else {
-//                                        logInName.setText(UserName);
-//                                    }
-//
-//                                    if (mobile.equals(null)||mobile==""){
-//                                        logInMobile.setText(Mobile);
-//                                    }else {
-//                                        logInMobile.setText(mobile);
-//                                    }
-//
-//                                    if (UserType.equals("Owner")){
-//                                        Owner.setChecked(true);
-//                                    }else {
-//                                        Renter.setChecked(true);
-//                                    }
-//
-//
-//                                    // Toast.makeText(LogIn_Activity.this,user.getEmail(),Toast.LENGTH_LONG).show();
-//                                    progressBar.setVisibility(View.INVISIBLE);
-//                                    //logInGoogle.setVisibility(View.GONE);
-//                                    logInGoogle.setBackgroundResource(R.drawable.btn_rounded_login_hidden);
-//                                    logInGoogle.setClickable(false);
-//
-//
-//
-//
-//
-//
-//
-//
-//                                }
-//
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//
-//                                progressBar.setVisibility(View.VISIBLE);
-//                                Toast.makeText(getApplicationContext(),"User Not Found",Toast.LENGTH_LONG).show();
-//
-//                            }
-//                        });
-//
-//
-//            }
+
 
 
             //==========================================================================================
@@ -253,7 +186,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
         Users users = new Users(EMail, User, Mobile);
 
-                            DocumentReference user = usersRef.document(EMail);
+        DocumentReference user = usersRef.document(EMail);
 
         user.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -267,71 +200,50 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
                 Toast.makeText(Sign_Up_Activity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+        // =========================================check user ==================================
+
+
+        public void getUserData(){
+        usersRef.whereEqualTo("eMail", EMail)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Users user = documentSnapshot.toObject(Users.class);
+
+                            checkedUserEMail = user.geteMail();
+
+}
+                        if (TextUtils.isEmpty(checkedUserEMail)) {
 
 
 
+                        } else {
+                            Toast.makeText(Sign_Up_Activity.this, "User Already Exist", Toast.LENGTH_SHORT).show();
 
 
+                        }
 
-//
-//        // =========================================check user ==================================
-//        usersRef.whereEqualTo("eMail",EMail)
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//
-//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-//                            Users user = documentSnapshot.toObject(Users.class);
-//
-//                            checkedUserEMail = user.geteMail();
-//                        }
-//                        if (!EMail.equals(checkedUserEMail)) {
-//
-//                            String userEMail = EMail;  // get From Google Account
-//                            String UserName = User;
-//                            String mobile = Mobile;
-//
-//
-//                            Users users = new Users(EMail, User, Mobile);
-//
-////                            DocumentReference user = usersRef.document(EMail);
-//
-//                            usersRef.add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                                @Override
-//                                public void onSuccess(DocumentReference documentReference) {
-//                                    Toast.makeText(Sign_Up_Activity.this, "Done", Toast.LENGTH_SHORT).show();
-////                                    startActivity(new Intent(getApplicationContext(), Profile_Owner.class));
-//                                }
-//                            }).addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception e) {
-//                                    Toast.makeText(Sign_Up_Activity.this, "Error", Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//
-//                        }
-//                        else {
-//                            Toast.makeText(Sign_Up_Activity.this, "Done", Toast.LENGTH_SHORT).show();
-//
-//
-//                        }
-//
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//
-//                    }
-//                });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
+                    }
+                });
 
+    }
 
         //=========================================================================================
 
 
-    }
+
 
 
 }

@@ -13,41 +13,54 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/et_so_name"
+            android:id="@+id/et_su_fullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
+            android:hint="Full Name"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            />
 
         <EditText
             android:id="@+id/et_su_mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Phon NO." />
 
-        <Button
-            android:id="@+id/btn_su_google"
+        <EditText
+            android:id="@+id/et_su_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Age" />
 
-            android:onClick="GoogleSignUp"
-            android:text="Google" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/et_su_eMail"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:onClick="addUser"/>
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="E-Mail" />
+
+
+        <EditText
+            android:id="@+id/et_su_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Password" />
+        <EditText
+            android:id="@+id/et_su_confirmPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Confirm Password" />
+
         <com.google.android.gms.common.SignInButton
             android:id="@+id/button1"
             android:layout_width="wrap_content"
