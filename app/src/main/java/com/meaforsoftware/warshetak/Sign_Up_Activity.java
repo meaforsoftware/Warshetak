@@ -245,6 +245,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
                             eTFullName.setText(User);
                             eTMobile.setText(Mobile);
+                            eTEMail.setText(EMail);
 
 
 
@@ -259,6 +260,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
                             eTFullName.setText(checkedUserName);
                             eTMobile.setText(checkedUserMobile);
+                            eTEMail.setText(checkedUserEMail);
 
                         }
 
