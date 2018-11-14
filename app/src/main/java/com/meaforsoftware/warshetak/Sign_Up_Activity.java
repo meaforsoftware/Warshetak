@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -40,15 +41,15 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
     FirebaseAuth mAuth ;
     FirebaseAuth.AuthStateListener mAuthListner ;
 
-
-
     public static String User,Mobile,EMail;
 
-    String checkedUserEMail  ;
-
+    String checkedUserEMail,checkedUserName , checkedUserMobile ;
 
     SignInButton signInButton ;
     ProgressBar progressBar;
+
+    EditText eTFullName , eTMobile , eTAge , eTPassword , eTConfirmPassword ;
+
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference usersRef =  db.collection("Users");
@@ -58,20 +59,22 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+
+        eTFullName = (EditText) findViewById(R.id.et_su_fullName);
+        eTMobile = (EditText) findViewById(R.id.et_su_mobile);
+        eTAge= (EditText) findViewById(R.id.et_su_age);
+        eTPassword = (EditText) findViewById(R.id.et_su_password);
+        eTConfirmPassword = (EditText) findViewById(R.id.et_su_confirmPassword);
+
         signInButton = (SignInButton) findViewById(R.id.button1);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                getUserData();
-
-//                GoogleSignUp(null);
-
+               GoogleSignUp(null);
             }
         });
-
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
-
 
 
         GoogleSignInOptions gso= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -92,29 +95,16 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user!=null){
 
-
                     User = user.getDisplayName();
                     Mobile = user.getPhoneNumber();
-
                     EMail = user.getEmail();
-
-
                 }
             }
-
-
-
-
-
             //==========================================================================================
 //todo creat update method
 
         };
-
-
-
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -128,18 +118,11 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
         finish();
     }
 
-
-
-
-
-
     public void GoogleSignUp(View view) {
 
         progressBar.setVisibility(View.VISIBLE);
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent,RC_SIGN_IN);
-
-
     }
 
     @Override
@@ -151,6 +134,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
             if (result.isSuccess()){
                 GoogleSignInAccount account = result.getSignInAccount();
                 firbaseAuthWithGoogle(account);
+                getUserData();
             }
         }
     }
@@ -183,8 +167,11 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
     public void addUser(View view) {
 
+        String EnteredUserName = eTFullName.getText().toString();
+        String EnteredMobile = eTMobile.getText().toString();
 
-        Users users = new Users(EMail, User, Mobile);
+
+        Users users = new Users(EMail, EnteredUserName, EnteredMobile);
 
         DocumentReference user = usersRef.document(EMail);
 
@@ -202,6 +189,33 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
         });
     }
 
+    public void updateUser(View view) {
+
+
+        String EnteredUserName = eTFullName.getText().toString();
+        String EnteredMobile = eTMobile.getText().toString();
+
+        DocumentReference user = usersRef.document(EMail);
+
+        user.update(
+                "mobile",EnteredMobile,
+                "userName",EnteredUserName
+        ).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void avoid) {
+                Toast.makeText(Sign_Up_Activity.this, "Done", Toast.LENGTH_SHORT).show();
+//                                    startActivity(new Intent(getApplicationContext(), Profile_Owner.class));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Sign_Up_Activity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
         // =========================================check user ==================================
 
 
@@ -217,15 +231,20 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
                             Users user = documentSnapshot.toObject(Users.class);
 
                             checkedUserEMail = user.geteMail();
-
+                            checkedUserName = user.getUserName();
+                            checkedUserMobile = user.getMobile();
 }
                         if (TextUtils.isEmpty(checkedUserEMail)) {
 
+                            eTFullName.setText(User);
+                            eTMobile.setText(Mobile);
 
 
                         } else {
                             Toast.makeText(Sign_Up_Activity.this, "User Already Exist", Toast.LENGTH_SHORT).show();
 
+                            eTFullName.setText(checkedUserName);
+                            eTMobile.setText(checkedUserMobile);
 
                         }
 
@@ -240,10 +259,17 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
     }
 
-        //=========================================================================================
+    public void confirmUser(View view) {
 
 
+        if (TextUtils.isEmpty(checkedUserEMail)) {
 
+            addUser(null);
 
+        } else {
 
+            updateUser(null);
+
+        }
+    }
 }
