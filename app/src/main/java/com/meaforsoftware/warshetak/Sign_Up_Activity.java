@@ -48,7 +48,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
     SignInButton signInButton ;
     ProgressBar progressBar;
 
-    EditText eTFullName , eTMobile , eTAge , eTPassword , eTConfirmPassword ;
+    EditText eTFullName , eTMobile , eTAge,eTEMail , eTPassword , eTConfirmPassword ;
 
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -64,6 +64,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
         eTFullName = (EditText) findViewById(R.id.et_su_fullName);
         eTMobile = (EditText) findViewById(R.id.et_su_mobile);
         eTAge= (EditText) findViewById(R.id.et_su_age);
+        eTEMail = (EditText)findViewById(R.id.et_su_eMail);
         eTPassword = (EditText) findViewById(R.id.et_su_password);
         eTConfirmPassword = (EditText) findViewById(R.id.et_su_confirmPassword);
 
@@ -236,12 +237,25 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 }
                         if (TextUtils.isEmpty(checkedUserEMail)) {
 
+                            eTFullName.setVisibility(View.VISIBLE);
+                            eTMobile.setVisibility(View.VISIBLE);
+                            eTAge.setVisibility(View.VISIBLE);
+                            eTEMail.setVisibility(View.VISIBLE);
+//                            eTEMail.setFocusable(false);
+
                             eTFullName.setText(User);
                             eTMobile.setText(Mobile);
 
 
+
                         } else {
                             Toast.makeText(Sign_Up_Activity.this, "User Already Exist", Toast.LENGTH_SHORT).show();
+
+                            eTFullName.setVisibility(View.VISIBLE);
+                            eTMobile.setVisibility(View.VISIBLE);
+                            eTAge.setVisibility(View.VISIBLE);
+                            eTEMail.setVisibility(View.VISIBLE);
+//                            eTEMail.setInputType(0);
 
                             eTFullName.setText(checkedUserName);
                             eTMobile.setText(checkedUserMobile);

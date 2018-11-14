@@ -19,6 +19,7 @@
             android:hint="Full Name"
             android:ems="10"
             android:inputType="textPersonName"
+            android:visibility="gone"
             />
 
         <EditText
@@ -27,7 +28,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:hint="Phon NO." />
+            android:hint="Phon NO."
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/et_su_age"
@@ -35,15 +37,18 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Age" />
+            android:hint="Age"
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/et_su_eMail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="E-Mail" />
+            android:inputType="textEmailAddress"
+
+            android:hint="E-Mail"
+            android:visibility="gone"/>
 
 
         <EditText
@@ -52,14 +57,16 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Password" />
+            android:hint="Password"
+            android:visibility="gone"/>
         <EditText
             android:id="@+id/et_su_confirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Confirm Password" />
+            android:hint="Confirm Password"
+            android:visibility="gone"/>
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/button1"
