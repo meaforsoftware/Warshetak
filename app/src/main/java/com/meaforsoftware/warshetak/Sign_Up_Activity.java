@@ -30,12 +30,13 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
-    private static final int RC_SIGN_IN = 9001;
+    private static final int RC_SIGN_IN = 1;
     private GoogleApiClient mGoogleApiClient ;
 
     FirebaseAuth mAuth ;
@@ -136,6 +137,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
                 GoogleSignInAccount account = result.getSignInAccount();
                 firbaseAuthWithGoogle(account);
                 getUserData();
+                progressBar.setVisibility(View.GONE);
             }
         }
     }
@@ -219,8 +221,7 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
         // =========================================check user ==================================
 
-
-        public void getUserData(){
+    public void getUserData(){
         usersRef.whereEqualTo("eMail", EMail)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -280,6 +281,12 @@ public class Sign_Up_Activity extends AppCompatActivity implements GoogleApiClie
 
         if (TextUtils.isEmpty(checkedUserEMail)) {
 
+
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                    .setTimestampsInSnapshotsEnabled(true)
+                    .build();
+            firestore.setFirestoreSettings(settings);
             addUser(null);
 
         } else {
