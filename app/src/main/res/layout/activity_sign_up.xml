@@ -5,105 +5,243 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Sign_Up_Activity"
+    android:orientation="vertical"
+    app:liftOnScroll="true"
     >
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/elsabalogo"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/user"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="5dp"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_su_fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Name_String"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+                <!-- android:drawableLeft="@drawable/left_icon_size" -->
+
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-
-
-        <EditText
-            android:id="@+id/et_su_fullName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:visibility="gone"
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/smartphone"
+            android:layout_marginTop="11dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="5dp"
             />
-
-        <EditText
-            android:id="@+id/et_su_mobile"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:hint="Phon NO."
-            android:visibility="gone"/>
+            android:layout_weight="1">
 
-        <EditText
-            android:id="@+id/et_su_age"
+            <AutoCompleteTextView
+                android:id="@+id/et_su_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_String"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:layout_weight="1"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Age"
-            android:visibility="gone"/>
+            android:layout_weight="1">
 
-        <EditText
-            android:id="@+id/et_su_eMail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress"
+            <AutoCompleteTextView
+                android:id="@+id/et_su_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/Age_String"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="2"
+                android:singleLine="true"
+                android:layout_weight="1"
+                />
 
-            android:hint="E-Mail"
-            android:visibility="gone"/>
-
-
-        <EditText
-            android:id="@+id/et_su_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Password"
-            android:visibility="gone"/>
-        <EditText
-            android:id="@+id/et_su_confirmPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Confirm Password"
-            android:visibility="gone"/>
-
-
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="addUser"
-            >
-
-        </com.google.android.gms.common.SignInButton>
-
-
-
-        <Button
-            android:id="@+id/btn_su_confirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Confirm"
-            android:onClick="confirmUser"/>
-
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="210dp"
-            android:visibility="invisible" />
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/email"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="5dp"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_su_eMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/lock"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="5dp"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_su_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_password"
+                    android:imeActionId="6"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/lock"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="5dp"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_su_confirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeActionId="6"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:hint="@string/prompt_Confirm_password"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+
+
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addUser"
+        >
+
+    </com.google.android.gms.common.SignInButton>
+
+
+
+    <Button
+        android:id="@+id/btn_su_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:textAppearanceSmall"
+        android:text="Confirm"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:onClick="confirmUser"
+        android:background="@drawable/buttonshape"/>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="210dp"
+        android:visibility="invisible" />
+</LinearLayout>
 
 
 </LinearLayout>
